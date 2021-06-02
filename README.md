@@ -5,11 +5,12 @@
 
 Garnet provides a single source of truth for your secrets, and lets you fetch them into your apps automatically. 
 
-- **Encrypted Storage** · centrally store and manage your all your configuration parameters and secrets.
+- **Encrypted Storage** · centrally store, manage and secure your all your configuration parameters and secrets.
 - **Auto-Injection** · fetch and inject environment variables into your apps at build or run time.
 - **Dashboard** · a Web UI to create, update, view and delete projects and configurations.
 - **CLI** · a command-line tool to fetch configurations from Garnet into your applications.
-- **Self-hosting** · easily deploy Garnet within your own environment, on the platform of your choice.
+- **API** · a HTTP API to programatically fetch configurations from Garnet into your applications.
+- **Self-hosting** · easily deploy Garnet inside your own environment, on the platform of your choice.
 - **Integrations** · integrate with popular deployment platforms. Check out currently supported [integrations](https://docs.usegarnet.com/integration-guides/integrations), or feel free to contribute.  
 - **Audit Logs** · coming soon 
 - **Team Collaboration** · coming soon 
