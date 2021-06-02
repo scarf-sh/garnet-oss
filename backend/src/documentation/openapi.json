@@ -3,7 +3,7 @@
   "info": {
     "title": "Garnet HTTP API",
     "version": "0.0.1",
-    "description": "To use the API you must first sign-in using the `POST /auth/sign-in` endpoint and collect the **Bearer token** from the response.\n"
+    "description": "To use the API you must first sign-in using the `POST /auth/sign-in` endpoint and collect the **Bearer token** from the response. The token can also be retreived from the Garnet Dashboard under your profile section. \n"
   },
   "servers": [
     {
@@ -13,14 +13,19 @@
   "paths": {
     "/auth/sign-up": {
       "post": {
-        "tags": ["Authentication"],
+        "tags": [
+          "Authentication"
+        ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["email", "password"],
+                "required": [
+                  "email",
+                  "password"
+                ],
                 "properties": {
                   "email": {
                     "type": "string"
@@ -56,14 +61,19 @@
     },
     "/auth/sign-in": {
       "post": {
-        "tags": ["Authentication"],
+        "tags": [
+          "Authentication"
+        ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["email", "password"],
+                "required": [
+                  "email",
+                  "password"
+                ],
                 "properties": {
                   "email": {
                     "type": "string"
@@ -104,7 +114,9 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["Authentication"],
+        "tags": [
+          "Authentication"
+        ],
         "responses": {
           "200": {
             "description": "Current User.",
@@ -119,7 +131,7 @@
           "401": {
             "description": "Unauthorized"
           },
-"403": {
+          "403": {
             "description": "Forbidden"
           },
           "429": {
@@ -135,14 +147,19 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["Authentication"],
+        "tags": [
+          "Authentication"
+        ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["oldPassword", "newPassword"],
+                "required": [
+                  "oldPassword",
+                  "newPassword"
+                ],
                 "properties": {
                   "oldPassword": {
                     "type": "string"
@@ -172,7 +189,7 @@
           "401": {
             "description": "Unauthorized"
           },
-"403": {
+          "403": {
             "description": "Forbidden"
           },
           "429": {
@@ -188,7 +205,9 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["Authentication"],
+        "tags": [
+          "Authentication"
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -212,7 +231,7 @@
           "401": {
             "description": "Unauthorized"
           },
-"403": {
+          "403": {
             "description": "Forbidden"
           },
           "429": {
@@ -223,14 +242,18 @@
     },
     "/auth/send-password-reset-email": {
       "post": {
-        "tags": ["Authentication"],
+        "tags": [
+          "Authentication"
+        ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["email"],
+                "required": [
+                  "email"
+                ],
                 "properties": {
                   "email": {
                     "type": "string"
@@ -256,14 +279,19 @@
     },
     "/auth/password-reset": {
       "put": {
-        "tags": ["Authentication"],
+        "tags": [
+          "Authentication"
+        ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["token", "password"],
+                "required": [
+                  "token",
+                  "password"
+                ],
                 "properties": {
                   "token": {
                     "type": "string",
@@ -294,14 +322,18 @@
     },
     "/auth/verify-email": {
       "put": {
-        "tags": ["Authentication"],
+        "tags": [
+          "Authentication"
+        ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["token"],
+                "required": [
+                  "token"
+                ],
                 "properties": {
                   "token": {
                     "type": "string",
@@ -332,14 +364,18 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["Authentication"],
+        "tags": [
+          "Authentication"
+        ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["data"],
+                "required": [
+                  "data"
+                ],
                 "properties": {
                   "data": {
                     "type": "object",
@@ -373,7 +409,7 @@
           "401": {
             "description": "Unauthorized"
           },
-"403": {
+          "403": {
             "description": "Forbidden"
           },
           "429": {
@@ -389,7 +425,9 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["Configurations"],
+        "tags": [
+          "Configurations"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -433,7 +471,9 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["Configurations"],
+        "tags": [
+          "Configurations"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -458,10 +498,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["data"],
+                "required": [
+                  "data"
+                ],
                 "properties": {
                   "data": {
-                    "$ref": "#/components/schemas/ConfigurationsInput"                
+                    "$ref": "#/components/schemas/ConfigurationsInput"
                   }
                 }
               }
@@ -495,7 +537,9 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["Configurations"],
+        "tags": [
+          "Configurations"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -533,7 +577,13 @@
               "type": "array",
               "items": {
                 "type": "string",
-                "enum": ["default","dev","test","staging","prod"]
+                "enum": [
+                  "default",
+                  "dev",
+                  "test",
+                  "staging",
+                  "prod"
+                ]
               }
             }
           },
@@ -551,7 +601,7 @@
             "schema": {
               "type": "string"
             }
-          },      
+          },
           {
             "in": "query",
             "name": "filter[createdAtRange][]",
@@ -628,7 +678,9 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["Configurations"],
+        "tags": [
+          "Configurations"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -645,10 +697,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["data"],
+                "required": [
+                  "data"
+                ],
                 "properties": {
                   "data": {
-                    "$ref": "#/components/schemas/ConfigurationsInput"                
+                    "$ref": "#/components/schemas/ConfigurationsInput"
                   }
                 }
               }
@@ -680,7 +734,9 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["Configurations"],
+        "tags": [
+          "Configurations"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -722,7 +778,9 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["Configurations"],
+        "tags": [
+          "Configurations"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -782,6 +840,68 @@
         }
       }
     },
+    "/tenant/{tenantId}/configurations/import": {
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Configurations"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tenantId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "data",
+                  "importHash"
+                ],
+                "properties": {
+                  "data": {
+                    "$ref": "#/components/schemas/ConfigurationsInput"
+                  },
+                  "importHash": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Configurations"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "429": {
+            "description": "Too Many Requests."
+          }
+        }
+      }
+    },
     "/tenant/{tenantId}/projects/{id}": {
       "get": {
         "security": [
@@ -789,7 +909,9 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["Projects"],
+        "tags": [
+          "Projects"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -833,7 +955,9 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["Projects"],
+        "tags": [
+          "Projects"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -858,10 +982,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["data"],
+                "required": [
+                  "data"
+                ],
                 "properties": {
                   "data": {
-                    "$ref": "#/components/schemas/ProjectsInput"                
+                    "$ref": "#/components/schemas/ProjectsInput"
                   }
                 }
               }
@@ -895,7 +1021,9 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["Projects"],
+        "tags": [
+          "Projects"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -933,10 +1061,18 @@
               "type": "array",
               "items": {
                 "type": "string",
-                "enum": ["Web App","Backend","Frontend","Static website","CLI","Infrastructure","Other"]
+                "enum": [
+                  "Web App",
+                  "Backend",
+                  "Frontend",
+                  "Static website",
+                  "CLI",
+                  "Infrastructure",
+                  "Other"
+                ]
               }
             }
-          },      
+          },
           {
             "in": "query",
             "name": "filter[createdAtRange][]",
@@ -1013,7 +1149,9 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["Projects"],
+        "tags": [
+          "Projects"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -1030,10 +1168,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["data"],
+                "required": [
+                  "data"
+                ],
                 "properties": {
                   "data": {
-                    "$ref": "#/components/schemas/ProjectsInput"                
+                    "$ref": "#/components/schemas/ProjectsInput"
                   }
                 }
               }
@@ -1065,7 +1205,9 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["Projects"],
+        "tags": [
+          "Projects"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -1107,7 +1249,9 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["Projects"],
+        "tags": [
+          "Projects"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -1167,6 +1311,68 @@
         }
       }
     },
+    "/tenant/{tenantId}/projects/import": {
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Projects"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tenantId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "data",
+                  "importHash"
+                ],
+                "properties": {
+                  "data": {
+                    "$ref": "#/components/schemas/ProjectsInput"
+                  },
+                  "importHash": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Projects"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "429": {
+            "description": "Too Many Requests."
+          }
+        }
+      }
+    },
     "/tenant/{tenantId}/file/credentials": {
       "get": {
         "security": [
@@ -1174,7 +1380,9 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["File"],
+        "tags": [
+          "File"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -1227,7 +1435,7 @@
           "401": {
             "description": "Unauthorized"
           },
-"403": {
+          "403": {
             "description": "Forbidden"
           },
           "429": {
@@ -1238,7 +1446,9 @@
     },
     "/file/download": {
       "get": {
-        "tags": ["File"],
+        "tags": [
+          "File"
+        ],
         "parameters": [
           {
             "in": "query",
@@ -1255,7 +1465,7 @@
           "401": {
             "description": "Unauthorized"
           },
-"403": {
+          "403": {
             "description": "Forbidden"
           },
           "429": {
@@ -1266,7 +1476,9 @@
     },
     "/file/upload": {
       "post": {
-        "tags": ["File"],
+        "tags": [
+          "File"
+        ],
         "parameters": [
           {
             "in": "query",
@@ -1298,7 +1510,9 @@
     },
     "/tenant/{id}": {
       "get": {
-        "tags": ["Tenant"],
+        "tags": [
+          "Tenant"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -1323,7 +1537,7 @@
           "401": {
             "description": "Unauthorized"
           },
-"403": {
+          "403": {
             "description": "Forbidden"
           },
           "429": {
@@ -1337,7 +1551,9 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["Tenant"],
+        "tags": [
+          "Tenant"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -1354,10 +1570,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["data"],
+                "required": [
+                  "data"
+                ],
                 "properties": {
                   "data": {
-                    "$ref": "#/components/schemas/TenantInput"                
+                    "$ref": "#/components/schemas/TenantInput"
                   }
                 }
               }
@@ -1378,7 +1596,7 @@
           "401": {
             "description": "Unauthorized"
           },
-"403": {
+          "403": {
             "description": "Forbidden"
           },
           "429": {
@@ -1394,7 +1612,9 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["Tenant"],
+        "tags": [
+          "Tenant"
+        ],
         "parameters": [
           {
             "in": "query",
@@ -1465,7 +1685,7 @@
           "401": {
             "description": "Unauthorized"
           },
-"403": {
+          "403": {
             "description": "Forbidden"
           },
           "429": {
@@ -1479,22 +1699,26 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["Tenant"],
+        "tags": [
+          "Tenant"
+        ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["data"],
+                "required": [
+                  "data"
+                ],
                 "properties": {
                   "data": {
-                    "$ref": "#/components/schemas/TenantInput"                
+                    "$ref": "#/components/schemas/TenantInput"
                   }
                 }
               }
             }
-          }  
+          }
         },
         "responses": {
           "200": {
@@ -1510,7 +1734,7 @@
           "401": {
             "description": "Unauthorized"
           },
-"403": {
+          "403": {
             "description": "Forbidden"
           },
           "429": {
@@ -1524,7 +1748,9 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["Tenant"],
+        "tags": [
+          "Tenant"
+        ],
         "parameters": [
           {
             "in": "query",
@@ -1545,7 +1771,7 @@
           "401": {
             "description": "Unauthorized"
           },
-"403": {
+          "403": {
             "description": "Forbidden"
           },
           "429": {
@@ -1561,7 +1787,9 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["Tenant"],
+        "tags": [
+          "Tenant"
+        ],
         "parameters": [
           {
             "in": "query",
@@ -1586,7 +1814,7 @@
           "401": {
             "description": "Unauthorized"
           },
-"403": {
+          "403": {
             "description": "Forbidden"
           },
           "429": {
@@ -1602,7 +1830,9 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["Tenant"],
+        "tags": [
+          "Tenant"
+        ],
         "parameters": [
           {
             "in": "query",
@@ -1642,7 +1872,7 @@
           "401": {
             "description": "Unauthorized"
           },
-"403": {
+          "403": {
             "description": "Forbidden"
           },
           "429": {
@@ -1658,7 +1888,9 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["Tenant"],
+        "tags": [
+          "Tenant"
+        ],
         "parameters": [
           {
             "in": "query",
@@ -1675,7 +1907,7 @@
           "401": {
             "description": "Unauthorized"
           },
-"403": {
+          "403": {
             "description": "Forbidden"
           },
           "429": {
@@ -1686,7 +1918,9 @@
     },
     "/tenant/{tenantId}/user/{id}": {
       "get": {
-        "tags": ["User"],
+        "tags": [
+          "User"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -1719,7 +1953,7 @@
           "401": {
             "description": "Unauthorized"
           },
-"403": {
+          "403": {
             "description": "Forbidden"
           },
           "429": {
@@ -1735,7 +1969,9 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["User"],
+        "tags": [
+          "User"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -1842,7 +2078,7 @@
           "401": {
             "description": "Unauthorized"
           },
-"403": {
+          "403": {
             "description": "Forbidden"
           },
           "429": {
@@ -1856,7 +2092,9 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["User"],
+        "tags": [
+          "User"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -1873,7 +2111,9 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["data"],
+                "required": [
+                  "data"
+                ],
                 "properties": {
                   "data": {
                     "type": "object",
@@ -1891,7 +2131,7 @@
                     }
                   }
                 }
-              } 
+              }
             }
           }
         },
@@ -1909,7 +2149,7 @@
           "401": {
             "description": "Unauthorized"
           },
-"403": {
+          "403": {
             "description": "Forbidden"
           },
           "429": {
@@ -1923,7 +2163,9 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["User"],
+        "tags": [
+          "User"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -1940,7 +2182,9 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["data"],
+                "required": [
+                  "data"
+                ],
                 "properties": {
                   "data": {
                     "type": "object",
@@ -1979,7 +2223,7 @@
           "401": {
             "description": "Unauthorized"
           },
-"403": {
+          "403": {
             "description": "Forbidden"
           },
           "429": {
@@ -1993,7 +2237,9 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["User"],
+        "tags": [
+          "User"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -2022,7 +2268,7 @@
           "401": {
             "description": "Unauthorized"
           },
-"403": {
+          "403": {
             "description": "Forbidden"
           },
           "429": {
@@ -2038,7 +2284,9 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["User"],
+        "tags": [
+          "User"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -2089,7 +2337,7 @@
           "401": {
             "description": "Unauthorized"
           },
-"403": {
+          "403": {
             "description": "Forbidden"
           },
           "429": {
@@ -2098,6 +2346,84 @@
         }
       }
     },
+    "/tenant/{tenantId}/user/import": {
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tenantId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "data",
+                  "importHash"
+                ],
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "email": {
+                        "type": "string"
+                      },
+                      "roles": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "example": "admin"
+                        }
+                      }
+                    }
+                  },
+                  "importHash": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Too Many Requests."
+          }
+        }
+      }
+    }
+  },
   "components": {
     "securitySchemes": {
       "bearerAuth": {
@@ -2125,7 +2451,13 @@
             "type": "array",
             "items": {
               "type": "string",
-              "enum": ["default","dev","test","staging","prod"]
+              "enum": [
+                "default",
+                "dev",
+                "test",
+                "staging",
+                "prod"
+              ]
             }
           },
           "projectName": {
@@ -2133,7 +2465,7 @@
           },
           "serviceName": {
             "type": "string"
-          }    
+          }
         }
       },
       "ConfigurationsInput": {
@@ -2149,7 +2481,13 @@
             "type": "array",
             "items": {
               "type": "string",
-              "enum": ["default","dev","test","staging","prod"]
+              "enum": [
+                "default",
+                "dev",
+                "test",
+                "staging",
+                "prod"
+              ]
             }
           },
           "projectName": {
@@ -2158,7 +2496,7 @@
           },
           "serviceName": {
             "type": "string"
-          }    
+          }
         }
       },
       "Projects": {
@@ -2179,9 +2517,17 @@
             "type": "array",
             "items": {
               "type": "string",
-              "enum": ["Web App","Backend","Frontend","Static website","CLI","Infrastructure","Other"]
+              "enum": [
+                "Web App",
+                "Backend",
+                "Frontend",
+                "Static website",
+                "CLI",
+                "Infrastructure",
+                "Other"
+              ]
             }
-          }    
+          }
         }
       },
       "ProjectsInput": {
@@ -2197,9 +2543,17 @@
             "type": "array",
             "items": {
               "type": "string",
-              "enum": ["Web App","Backend","Frontend","Static website","CLI","Infrastructure","Other"]
+              "enum": [
+                "Web App",
+                "Backend",
+                "Frontend",
+                "Static website",
+                "CLI",
+                "Infrastructure",
+                "Other"
+              ]
             }
-          }    
+          }
         }
       },
       "UserCurrent": {
@@ -2400,30 +2754,6 @@
           },
           "url": {
             "type": "string"
-          },
-          "plan": {
-            "type": "string",
-            "enum": ["free", "growth", "enterprise"]
-          },
-          "planStatus": {
-            "type": "string",
-            "enum": [
-              "active",
-              "cancel_at_period_end",
-              "error"
-            ]
-          },
-          "planStripeCustomerId": {
-            "type": "string"
-          },
-          "planUserId": {
-            "type": "string"
-          },
-          "settings": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Settings"
-            }
           }
         }
       },
@@ -2528,5 +2858,4 @@
       }
     }
   }
-}
 }
