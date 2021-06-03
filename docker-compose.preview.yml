@@ -1,0 +1,38 @@
+version: '3'
+services:
+    db:
+        container_name: postgres
+        environment:
+            # POSTGRES_DB: garnet
+            POSTGRES_PASSWORD: garnet
+            POSTGRES_USER: garnet
+        image: postgres:13
+        ports: 
+            - 5432:5432
+        volumes:
+            - postgres-data:/var/lib/postgresql/data
+    web:
+        container_name: garnet_web
+        environment:
+            #these are dev mode placeholders (not for prod use)
+            DB_USERNAME: garnet
+            DB_PASSWORD: garnet
+            DB_NAME: garnet
+            DB_HOST: db
+            DB_TYPE: postgres
+            DB_LOGGING: "true"
+            API_DOCUMENTATION_ENABLED: "true"
+            FRONTEND_URL: http://localhost:3000
+            BACKEND_URL: http://localhost:8080/api
+        image: garnetlabs/garnet-oss-preview:latest
+        # build:
+        #     context: ./
+        #     dockerfile: preview.dev.Dockerfile
+        links:
+            - db:db
+        ports:
+            - 8080:8080
+            - 3000:3000
+        working_dir: /app
+volumes:
+    postgres-data: 
