@@ -66,6 +66,11 @@ const privateRoutes = [
     exact: true,
   },
   {
+    path: '/audit-logs',
+    loader: () => import('src/view/auditLog/AuditLogPage'),
+    permissionRequired: null,
+  },
+  {
     path: '/configurations',
     loader: () =>
       import('src/view/configurations/list/ConfigurationsListPage'),

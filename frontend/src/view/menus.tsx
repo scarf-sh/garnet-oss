@@ -4,7 +4,8 @@ import config from 'src/config';
 
 import {
   ProjectOutlined,
-  UnlockOutlined
+  UnlockOutlined,
+  FileSearchOutlined,
 } from '@ant-design/icons';
 
 
@@ -20,5 +21,11 @@ export default [
     permissionRequired: null,
     icon: <UnlockOutlined />,
     label: i18n('entities.configurations.menu'),
+  },
+  {
+    path: '/audit-logs',
+    icon: <FileSearchOutlined />,
+    label: i18n('auditLog.menu'),
+    permissionRequired: null,
   },
 ].filter(Boolean);

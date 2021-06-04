@@ -295,6 +295,25 @@ const en = {
     },
   },
 
+  auditLog: {
+    menu: 'Audit Logs',
+    title: 'Audit Logs',
+    exporterFileName: 'audit_log_export',
+    entityNamesHint:
+      'Separate multiple entities using the comma character.',
+    fields: {
+      id: 'Id',
+      timestampRange: 'Period',
+      entityName: 'Entity',
+      entityNames: 'Entities',
+      entityId: 'Entity ID',
+      action: 'Action',
+      values: 'Values',
+      timestamp: 'Date',
+      createdByEmail: 'User Email',
+    },
+  },
+
   user: {
     invite: 'Invite',
     title: 'Users',
