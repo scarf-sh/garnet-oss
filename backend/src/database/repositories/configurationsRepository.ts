@@ -497,14 +497,16 @@ class ConfigurationsRepository {
     data,
     options: IRepositoryOptions,
   ) {
-    let values = {};
+    let values:any= {};
 
     if (data) {
       values = {
         ...record.get({ plain: true }),
 
       };
+      values.variableValue = decrypt(values.variableValue);
     }
+    
 
     await AuditLogRepository.log(
       {
@@ -516,7 +518,7 @@ class ConfigurationsRepository {
       options,
     );
   }
-  
+
 
   static async _fillWithRelationsAndFilesForRows(
     rows,
