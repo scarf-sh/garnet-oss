@@ -1,6 +1,7 @@
 # Garnet
 
 ![Docker Image Version (latest semver)](https://img.shields.io/docker/v/garnetlabs/garnet-oss-backend)
+![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed-raw/garnet-labs/garnet-oss)
 
 Garnet provides a single source of truth for your secrets, and lets you fetch them into your apps automatically. 
 
