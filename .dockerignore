@@ -1,7 +1,11 @@
-/node_modules
+node_modules
+
+Dockerfile*
+docker-compose*
+README.md
+LICENSE
 
 # production
-/build
 */bin
 */obj
 
@@ -17,5 +21,3 @@ npm-debug.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-docker-compose*
