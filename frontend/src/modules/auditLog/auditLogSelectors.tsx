@@ -102,16 +102,16 @@ const selectSelectedRows = createSelector(
     },
 );
 
-const selectPermissionToRead = createSelector(
-    [
-        authSelectors.selectCurrentTenant,
-        authSelectors.selectCurrentUser,
-    ],
-    (currentTenant, currentUser) =>
-        new PermissionChecker(currentTenant, currentUser).match(
-            Permissions.values.auditLogRead,
-        ),
-);
+// const selectPermissionToRead = createSelector(
+//     [
+//         authSelectors.selectCurrentTenant,
+//         authSelectors.selectCurrentUser,
+//     ],
+//     (currentTenant, currentUser) =>
+//         new PermissionChecker(currentTenant, currentUser).match(
+//             Permissions.values.auditLogRead,
+//         ),
+// );
 
 export default {
     selectLoading,
@@ -127,5 +127,5 @@ export default {
     selectHasRows,
     selectExportLoading,
     selectRawFilter,
-    selectPermissionToRead,
+    // selectPermissionToRead,
 };
