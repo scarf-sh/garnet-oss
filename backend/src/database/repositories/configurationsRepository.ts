@@ -1,4 +1,5 @@
 import SequelizeRepository from '../../database/repositories/sequelizeRepository';
+import AuditLogRepository from '../../database/repositories/auditLogRepository';
 import lodash from 'lodash';
 import SequelizeFilterUtils from '../../database/utils/sequelizeFilterUtils';
 import Error404 from '../../errors/Error404';
@@ -44,6 +45,13 @@ class ConfigurationsRepository {
       {
         transaction,
       },
+    );
+
+    await this._createAuditLog(
+      AuditLogRepository.CREATE,
+      record,
+      data,
+      options,
     );
 
     return this.findById(record.id, options);
@@ -96,6 +104,13 @@ class ConfigurationsRepository {
         transaction,
       },
     );
+    
+    await this._createAuditLog(
+      AuditLogRepository.UPDATE,
+      record,
+      data,
+      options,
+    );
 
     return this.findById(record.id, options);
   }
@@ -126,6 +141,13 @@ class ConfigurationsRepository {
     await record.destroy({
       transaction,
     });
+
+    await this._createAuditLog(
+      AuditLogRepository.DELETE,
+      record,
+      record,
+      options,
+    );
 
   }
 
@@ -465,9 +487,36 @@ class ConfigurationsRepository {
         record.dataValues.variableValue = decrypt(record.dataValues.variableValue);
       }
     );
-
+    
     return recordObject;
   }
+
+  static async _createAuditLog(
+    action,
+    record,
+    data,
+    options: IRepositoryOptions,
+  ) {
+    let values = {};
+
+    if (data) {
+      values = {
+        ...record.get({ plain: true }),
+
+      };
+    }
+
+    await AuditLogRepository.log(
+      {
+        entityName: 'configurations',
+        entityId: record.id,
+        action,
+        values,
+      },
+      options,
+    );
+  }
+  
 
   static async _fillWithRelationsAndFilesForRows(
     rows,
