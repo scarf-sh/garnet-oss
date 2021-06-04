@@ -1,4 +1,5 @@
 import SequelizeRepository from '../../database/repositories/sequelizeRepository';
+import AuditLogRepository from './auditLogRepository';
 import FileRepository from './fileRepository';
 import crypto from 'crypto';
 import SequelizeFilterUtils from '../../database/utils/sequelizeFilterUtils';
@@ -46,6 +47,19 @@ export default class UserRepository {
       options,
     );
 
+    await AuditLogRepository.log(
+      {
+        entityName: 'user',
+        entityId: user.id,
+        action: AuditLogRepository.CREATE,
+        values: {
+          ...user.get({ plain: true }),
+          avatars: data.avatars,
+        },
+      },
+      options,
+    );
+
     return this.findById(user.id, {
       ...options,
       bypassPermissionValidation: true,
@@ -70,6 +84,18 @@ export default class UserRepository {
     );
 
     delete user.password;
+    await AuditLogRepository.log(
+      {
+        entityName: 'user',
+        entityId: user.id,
+        action: AuditLogRepository.CREATE,
+        values: {
+          ...user.get({ plain: true }),
+          avatars: data.avatars,
+        },
+      },
+      options,
+    );
 
     return this.findById(user.id, {
       ...options,
@@ -114,6 +140,19 @@ export default class UserRepository {
       options,
     );
 
+    await AuditLogRepository.log(
+      {
+        entityName: 'user',
+        entityId: user.id,
+        action: AuditLogRepository.UPDATE,
+        values: {
+          ...user.get({ plain: true }),
+          avatars: data.avatars,
+        },
+      },
+      options,
+    );
+
     return this.findById(user.id, options);
   }
 
@@ -145,6 +184,18 @@ export default class UserRepository {
     }
 
     await user.update(data, { transaction });
+
+    await AuditLogRepository.log(
+      {
+        entityName: 'user',
+        entityId: user.id,
+        action: AuditLogRepository.UPDATE,
+        values: {
+          id,
+        },
+      },
+      options,
+    );
 
     return this.findById(user.id, {
       ...options,
@@ -184,6 +235,20 @@ export default class UserRepository {
       { transaction },
     );
 
+    await AuditLogRepository.log(
+      {
+        entityName: 'user',
+        entityId: user.id,
+        action: AuditLogRepository.UPDATE,
+        values: {
+          id: user.id,
+          emailVerificationToken,
+          emailVerificationTokenExpiresAt,
+        },
+      },
+      options,
+    );
+
     return emailVerificationToken;
   }
 
@@ -217,6 +282,20 @@ export default class UserRepository {
         updatedById: currentUser.id,
       },
       { transaction },
+    );
+
+    await AuditLogRepository.log(
+      {
+        entityName: 'user',
+        entityId: user.id,
+        action: AuditLogRepository.UPDATE,
+        values: {
+          id: user.id,
+          passwordResetToken,
+          passwordResetTokenExpiresAt,
+        },
+      },
+      options,
     );
 
     return passwordResetToken;
@@ -256,6 +335,20 @@ export default class UserRepository {
         belongsToId: user.id,
       },
       data.avatars,
+      options,
+    );
+
+    await AuditLogRepository.log(
+      {
+        entityName: 'user',
+        entityId: user.id,
+        action: AuditLogRepository.UPDATE,
+        values: {
+          ...user.get({ plain: true }),
+          avatars: data.avatars,
+          roles: data.roles,
+        },
+      },
       options,
     );
 
@@ -651,6 +744,19 @@ export default class UserRepository {
       { transaction },
     );
 
+    await AuditLogRepository.log(
+      {
+        entityName: 'user',
+        entityId: user.id,
+        action: AuditLogRepository.UPDATE,
+        values: {
+          id,
+          emailVerified: true,
+        },
+      },
+      options,
+    );
+
     return true;
   }
 
@@ -717,6 +823,17 @@ export default class UserRepository {
     });
 
     delete user.password;
+    await AuditLogRepository.log(
+      {
+        entityName: 'user',
+        entityId: user.id,
+        action: AuditLogRepository.CREATE,
+        values: {
+          ...user.get({ plain: true }),
+        },
+      },
+      options,
+    );
 
     return this.findById(user.id, {
       ...options,
