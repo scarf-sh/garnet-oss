@@ -1,4 +1,5 @@
 import SequelizeRepository from '../../database/repositories/sequelizeRepository';
+import AuditLogRepository from './auditLogRepository';
 import FileRepository from './fileRepository';
 import _get from 'lodash/get';
 import { IRepositoryOptions } from './IRepositoryOptions';
@@ -89,6 +90,16 @@ export default class SettingsRepository {
         belongsToId: settings.id,
       },
       data.backgroundImages,
+      options,
+    );
+
+    await AuditLogRepository.log(
+      {
+        entityName: 'settings',
+        entityId: settings.id,
+        action: AuditLogRepository.UPDATE,
+        values: data,
+      },
       options,
     );
 
