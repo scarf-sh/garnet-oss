@@ -3,7 +3,7 @@
 ![Docker Image Version (latest semver)](https://img.shields.io/docker/v/garnetlabs/garnet-oss-backend)
 ![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed-raw/garnet-labs/garnet-oss)
 
-Garnet provides a single source of truth for your secrets, and lets you fetch them into your apps automatically. 
+Garnet provides a single source of truth for your configurations and secrets, and lets you fetch them into your apps automatically. 
 
 - **Encrypted Storage** · centrally store, manage and secure your all your configuration parameters and secrets.
 - **Auto-Injection** · fetch and inject environment variables into your apps at build or run time.
@@ -12,7 +12,7 @@ Garnet provides a single source of truth for your secrets, and lets you fetch th
 - **API** · a HTTP API to programatically fetch configurations from Garnet into your applications.
 - **Self-hosting** · easily deploy Garnet inside your own environment, on the platform of your choice.
 - **Integrations** · integrate with popular deployment platforms. Check out currently supported [integrations](https://docs.usegarnet.com/integration-guides/integrations), or feel free to contribute.  
-- **Audit Logs** · coming soon 
+- **Audit Logs** · append-only log of all actions on configurations.  
 - **Team Collaboration** · coming soon 
 - **Role-Based Access Control** · coming soon 
 
