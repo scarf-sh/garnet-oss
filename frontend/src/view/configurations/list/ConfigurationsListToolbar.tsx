@@ -4,6 +4,7 @@ import { Button, Tooltip, Popconfirm } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import configurationsSelectors from 'src/modules/configurations/configurationsSelectors';
 import selectors from 'src/modules/configurations/list/configurationsListSelectors';
+import auditLogSelectors from 'src/modules/auditLog/auditLogSelectors';
 import actions from 'src/modules/configurations/list/configurationsListActions';
 import destroyActions from 'src/modules/configurations/destroy/configurationsDestroyActions';
 import { Link } from 'react-router-dom';
@@ -30,6 +31,9 @@ const ConfigurationsToolbar = (props) => {
     selectors.selectExportLoading,
   );
   const hasRows = useSelector(selectors.selectHasRows);
+  // const hasPermissionToAuditLogs = useSelector(
+  //   auditLogSelectors.selectPermissionToRead,
+  // );
   const hasPermissionToDestroy = useSelector(
     configurationsSelectors.selectPermissionToDestroy,
   );

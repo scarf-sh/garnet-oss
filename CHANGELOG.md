@@ -1,5 +1,11 @@
 # CHANGELOG
 
+v0.1.1 - (Jun 4, 2021)
+- added audit logs functionality 
+- fixed theme issues
+- fixed dotfiles
+
+
 v0.1.0 - (Jun 2, 2021)
 
 - handled db:create automatically for dev and preview cases (in package.json, PM2 config.json, and docker-compose files for dev and preview)

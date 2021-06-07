@@ -3,6 +3,8 @@ import selectors from 'src/modules/user/list/userListSelectors';
 import Errors from 'src/modules/shared/error/errors';
 import Message from 'src/view/shared/message';
 import { i18n } from 'src/i18n';
+import exporterFields from 'src/modules/user/list/userListExporterFields';
+import Exporter from 'src/modules/shared/exporter/exporter';
 
 
 const prefix = 'USER_LIST';
@@ -43,6 +45,41 @@ const userListActions = {
     });
 
     dispatch(userListActions.doFetch());
+  },
+
+  doExport: () => async (dispatch, getState) => {
+    try {
+      if (!exporterFields || !exporterFields.length) {
+        throw new Error('exporterFields is required');
+      }
+
+      dispatch({
+        type: userListActions.EXPORT_STARTED,
+      });
+
+      const filter = selectors.selectFilter(getState());
+      const response = await UserService.fetchUsers(
+        filter,
+        selectors.selectOrderBy(getState()),
+        null,
+        null,
+      );
+
+      new Exporter(
+        exporterFields,
+        i18n('user.exporterFileName'),
+      ).transformAndExportAsExcelFile(response.rows);
+
+      dispatch({
+        type: userListActions.EXPORT_SUCCESS,
+      });
+    } catch (error) {
+      Errors.handle(error);
+
+      dispatch({
+        type: userListActions.EXPORT_ERROR,
+      });
+    }
   },
 
   doChangePaginationAndSort: (pagination, sorter) => async (

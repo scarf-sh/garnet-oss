@@ -1,10 +1,12 @@
-/node_modules
-node_modules/
-/data
-dist/
+node_modules
+
+Dockerfile*
+docker-compose*
+README.md
+LICENSE
+
 
 # production
-/build
 */bin
 */obj
 

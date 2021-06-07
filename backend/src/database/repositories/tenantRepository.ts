@@ -1,4 +1,5 @@
 import SequelizeRepository from '../../database/repositories/sequelizeRepository';
+import AuditLogRepository from './auditLogRepository';
 import lodash from 'lodash';
 import SequelizeFilterUtils from '../../database/utils/sequelizeFilterUtils';
 import Error404 from '../../errors/Error404';
@@ -58,6 +59,16 @@ class TenantRepository {
       },
       {
         transaction,
+      },
+    );
+
+    await this._createAuditLog(
+      AuditLogRepository.CREATE,
+      record,
+      data,
+      {
+        ...options,
+        currentTenant: record,
       },
     );
 
@@ -131,6 +142,13 @@ class TenantRepository {
       },
     );
 
+    await this._createAuditLog(
+      AuditLogRepository.UPDATE,
+      record,
+      data,
+      options,
+    );
+
     return this.findById(record.id, options);
   }
 
@@ -164,6 +182,13 @@ class TenantRepository {
     record = await record.update(data, {
       transaction,
     });
+
+    await this._createAuditLog(
+      AuditLogRepository.UPDATE,
+      record,
+      data,
+      options,
+    );
 
 
     return this.findById(record.id, options);
@@ -200,6 +225,13 @@ class TenantRepository {
       transaction,
     });
 
+    await this._createAuditLog(
+      AuditLogRepository.UPDATE,
+      record,
+      data,
+      options,
+    );
+
     return this.findById(record.id, options);
   }
 
@@ -226,6 +258,13 @@ class TenantRepository {
     await record.destroy({
       transaction,
     });
+
+    await this._createAuditLog(
+      AuditLogRepository.DELETE,
+      record,
+      record,
+      options,
+    );
 
   }
 
@@ -418,6 +457,31 @@ class TenantRepository {
       id: record.id,
       label: record.name,
     }));
+  }
+
+  static async _createAuditLog(
+    action,
+    record,
+    data,
+    options: IRepositoryOptions,
+  ) {
+    let values = {};
+
+    if (data) {
+      values = {
+        ...record.get({ plain: true }),
+      };
+    }
+
+    await AuditLogRepository.log(
+      {
+        entityName: 'tenant',
+        entityId: record.id,
+        action,
+        values,
+      },
+      options,
+    );
   }
 }
 

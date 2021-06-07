@@ -1,4 +1,5 @@
 import SequelizeRepository from '../../database/repositories/sequelizeRepository';
+import AuditLogRepository from './auditLogRepository';
 import Roles from '../../security/roles';
 import crypto from 'crypto';
 import { IRepositoryOptions } from './IRepositoryOptions';
@@ -62,6 +63,20 @@ export default class TenantUserRepository {
       },
       { transaction },
     );
+
+    await AuditLogRepository.log(
+      {
+        entityName: 'user',
+        entityId: user.id,
+        action: AuditLogRepository.CREATE,
+        values: {
+          email: user.email,
+          status,
+          roles,
+        },
+      },
+      options,
+    );
   }
 
   static async destroy(
@@ -84,6 +99,18 @@ export default class TenantUserRepository {
     );
 
     await tenantUser.destroy({ transaction });
+
+    await AuditLogRepository.log(
+      {
+        entityName: 'user',
+        entityId: user.id,
+        action: AuditLogRepository.DELETE,
+        values: {
+          email: user.email,
+        },
+      },
+      options,
+    );
 
   }
 
@@ -143,6 +170,22 @@ export default class TenantUserRepository {
     await tenantUser.save({
       transaction,
     });
+
+    await AuditLogRepository.log(
+      {
+        entityName: 'user',
+        entityId: user.id,
+        action: isCreation
+          ? AuditLogRepository.CREATE
+          : AuditLogRepository.UPDATE,
+        values: {
+          email: user.email,
+          status: tenantUser.status,
+          roles: newRoles,
+        },
+      },
+      options,
+    );
 
     return tenantUser;
   }
@@ -236,6 +279,20 @@ export default class TenantUserRepository {
     const auditLogRoles = existingTenantUser
       ? existingTenantUser.roles
       : invitationTenantUser.roles;
+
+    await AuditLogRepository.log(
+      {
+        entityName: 'user',
+        entityId: currentUser.id,
+        action: AuditLogRepository.UPDATE,
+        values: {
+          email: currentUser.email,
+          roles: auditLogRoles,
+          status: selectStatus('active', auditLogRoles),
+        },
+      },
+      options,
+    );
   }
 }
 

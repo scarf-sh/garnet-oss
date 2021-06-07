@@ -1,4 +1,5 @@
 import SequelizeRepository from '../../database/repositories/sequelizeRepository';
+import AuditLogRepository from '../../database/repositories/auditLogRepository';
 import lodash from 'lodash';
 import SequelizeFilterUtils from '../../database/utils/sequelizeFilterUtils';
 import Error404 from '../../errors/Error404';
@@ -39,7 +40,13 @@ class ProjectsRepository {
         transaction,
       },
     );
-
+    
+    await this._createAuditLog(
+      AuditLogRepository.CREATE,
+      record,
+      data,
+      options,
+    );
 
     return this.findById(record.id, options);
   }
@@ -88,6 +95,13 @@ class ProjectsRepository {
       },
     );
 
+    await this._createAuditLog(
+      AuditLogRepository.UPDATE,
+      record,
+      data,
+      options,
+    );
+
 
     return this.findById(record.id, options);
   }
@@ -118,6 +132,13 @@ class ProjectsRepository {
     await record.destroy({
       transaction,
     });
+
+    await this._createAuditLog(
+      AuditLogRepository.DELETE,
+      record,
+      record,
+      options,
+    );
 
   }
 
@@ -359,6 +380,32 @@ class ProjectsRepository {
       id: record.id,
       label: record.projectName,
     }));
+  }
+
+  static async _createAuditLog(
+    action,
+    record,
+    data,
+    options: IRepositoryOptions,
+  ) {
+    let values = {};
+
+    if (data) {
+      values = {
+        ...record.get({ plain: true }),
+
+      };
+    }
+
+    await AuditLogRepository.log(
+      {
+        entityName: 'projects',
+        entityId: record.id,
+        action,
+        values,
+      },
+      options,
+    );
   }
 
   static async _fillWithRelationsAndFilesForRows(
