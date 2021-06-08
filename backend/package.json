@@ -14,7 +14,7 @@
     "@sendgrid/mail": "7.2.6",
     "aws-sdk": "2.756.0",
     "bcrypt": "5.0.1",
-    "cli-highlight": "2.1.4",
+    "cli-highlight": "2.1.9",
     "cors": "2.8.5",
     "crypto-js": "4.0.0",
     "dotenv": "8.2.0",
