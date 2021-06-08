@@ -1,5 +1,8 @@
 # CHANGELOG
 
+v0.1.2 - (Jun 7, 2021)
+- security patch: bumped up cli-highlight to 2.1.9
+
 v0.1.1 - (Jun 4, 2021)
 - added audit logs functionality 
 - fixed theme issues
