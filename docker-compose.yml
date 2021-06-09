@@ -31,7 +31,7 @@ services:
             AUTH_SOCIAL_GITHUB_CLIENT_SECRET: <GitHub-OAuth-client-secret>
             AUTH_SOCIAL_GITHUB_CALLBACK_URL: http://localhost:8080/api/auth/social/github/callback
             TENANT_MODE: multi
-        image: garnetlabs/garnet-oss-backend:latest
+        image: garnet.docker.scarf.sh/garnetlabs/garnet-oss-backend:latest
         links:
             - db:db
         ports:
@@ -40,7 +40,7 @@ services:
         command: npm start
     frontend:
         container_name: garnet_frontend
-        image: garnetlabs/garnet-oss-frontend:latest
+        image: garnet.docker.scarf.sh/garnetlabs/garnet-oss-frontend:latest
         ports:
             - 3000:3000
         working_dir: /app
