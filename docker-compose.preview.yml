@@ -24,7 +24,7 @@ services:
             API_DOCUMENTATION_ENABLED: "true"
             FRONTEND_URL: http://localhost:3000
             BACKEND_URL: http://localhost:8080/api
-        image: garnetlabs/garnet-oss-preview:latest
+        image: garnet.docker.scarf.sh/garnetlabs/garnet-oss-preview:latest
         # build:
         #     context: ./
         #     dockerfile: preview.dev.Dockerfile
